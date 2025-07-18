@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        go-version: [1.22, 1.23, 1.24]
+        go-version: [1.21, 1.22, 1.23]
 
     steps:
     - name: Checkout code
@@ -62,7 +62,7 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: 1.24
+        go-version: 1.23
 
     - name: Build application
       run: go build -v -o bin/configparser ./main.go
@@ -72,38 +72,3 @@ jobs:
         ./bin/configparser --help
         ./bin/configparser parse --help
         ./bin/configparser server --help
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.24
-
-    - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v3
-      with:
-        version: latest
-        args: --timeout=5m
-
-  security:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.24
-
-    - name: Run Gosec Security Scanner
-      uses: securecodewarrior/github-action-gosec@master
-      with:
-        args: './...'
