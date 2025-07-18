@@ -1,5 +1,9 @@
 # go-fundamentals
 
+![CI](https://github.com/algarves/go-fundamentals/workflows/CI/badge.svg)
+![Go Version](https://img.shields.io/badge/go-1.24-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 Projeto de estudo dos fundamentos de GoLang, baseado no curso de **Imersão Técnica** - Go Fundamentals, promovido pela academia (<https://platform.rocks/>).
 
 ## Descrição
@@ -132,12 +136,45 @@ Para executar os testes:
 make test
 ```
 
+### CI/CD Pipeline
+
+O projeto possui pipelines automatizadas no GitHub Actions que são executadas:
+
+- **CI Pipeline**: Executa a cada push/PR nas branches `main` e `develop`
+  - Testa o código em múltiplas versões do Go (1.22, 1.23, 1.24)
+  - Executa testes com coverage
+  - Faz build da aplicação
+  - Executa linting com golangci-lint
+  - Faz análise de segurança com gosec
+
+- **Release Pipeline**: Executa quando uma tag é criada
+  - Faz build para múltiplas plataformas (Linux, macOS, Windows)
+  - Cria release automaticamente no GitHub
+
+Para criar um release:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## To Do
 
 - [X] Criar um parser de arquivos de configurações do tipo `JSON` e `YAML` utilizando a lib [Cobra](https://github.com/spf13/cobra) para construção de um CLI.
 - [X] Implementar validação de configurações
 - [X] Adicionar suporte a Docker
 - [X] Criar comandos separados para parse e server
+- [X] Configurar CI/CD Pipeline com GitHub Actions
+- [X] Adicionar linting automatizado com golangci-lint
+- [X] Implementar análise de segurança com gosec
+- [X] Configurar pipeline de release automático
+- [ ] Adicionar mais validações específicas
+- [ ] Implementar comando para database
+- [ ] Adicionar testes unitários mais abrangentes
+- [ ] Melhorar tratamento de erros
+- [ ] Adicionar logging estruturado
+- [ ] Implementar cache de configurações
+- [ ] Adicionar métricas de performance
 
 ## Licença
 
