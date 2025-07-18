@@ -8,32 +8,32 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    
+
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: 1.24
-    
+
     - name: Run tests
       run: go test -v ./...
-    
+
     - name: Build for multiple platforms
       run: |
         # Linux
         GOOS=linux GOARCH=amd64 go build -o bin/configparser-linux-amd64 ./main.go
         GOOS=linux GOARCH=arm64 go build -o bin/configparser-linux-arm64 ./main.go
-        
+
         # macOS
         GOOS=darwin GOARCH=amd64 go build -o bin/configparser-darwin-amd64 ./main.go
         GOOS=darwin GOARCH=arm64 go build -o bin/configparser-darwin-arm64 ./main.go
-        
+
         # Windows
         GOOS=windows GOARCH=amd64 go build -o bin/configparser-windows-amd64.exe ./main.go
-    
+
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
