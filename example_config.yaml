@@ -1,0 +1,10 @@
+servers:
+  - name: server1
+    host: 127.0.0.1
+    port: 8080
+    replicas: 3
+database:
+  host: localhost
+  port: 5432
+  user: admin
+  password: secret
