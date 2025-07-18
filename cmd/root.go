@@ -44,5 +44,8 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "file", "f", "", "Path to the configuration file (YAML or JSON)")
-	rootCmd.MarkPersistentFlagRequired("file")
+	err := rootCmd.MarkPersistentFlagRequired("file")
+	if err != nil {
+		panic(err)
+	}
 }
